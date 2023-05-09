@@ -7,6 +7,13 @@ import 'package:lucky_carnation/main/view/selelct_screen.dart';
 import 'package:lucky_carnation/splash/view/splash_screen.dart';
 import 'dart:developer' as developer;
 
+/*
+  수정사항
+  1. 노래가 설명화면으로 가면 맨 처음부터 다시 시작했으면 좋겠다.
+  2. 숫자 선택시 선택한 숫자를 알아내야 당첨/꽝을 가릴 수 있음
+  3. 당첨일 경우/ 꽝일 경우 효과음? 또는 버튼 선택시 효과음 어떻게 처리할 것인가
+  
+*/
 void main() {
   runApp(MyApp());
 }
@@ -45,7 +52,7 @@ class _MyAppState extends State<MyApp> {
         routes: [
           GoRoute(
             path: '/', //로딩화면
-            builder: (_, state) => ResultScreen(),
+            builder: (_, state) => ResultScreen(), //SplashScreen(),
             routes: [
               GoRoute(
                 path: 'explan',

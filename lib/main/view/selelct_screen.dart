@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lucky_carnation/main/view/result_screen.dart';
 
+//코드 정리 필요...
+
 class SelectScreen extends StatelessWidget {
   static String get routeName => 'SelectScreen';
   const SelectScreen({super.key});
