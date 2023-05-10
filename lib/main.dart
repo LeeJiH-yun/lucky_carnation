@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    //_init();
+    _init();
 
     super.initState();
   }
@@ -58,7 +58,8 @@ class _MyAppState extends State<MyApp> {
         routes: [
           GoRoute(
             path: '/', //로딩화면
-            builder: (_, state) => SelectScreen(),
+            builder: (_, state) => SplashScreen(),
+            //builder: (_, state) => ResultScreen(),
             routes: [
               GoRoute(
                 path: 'explan',
