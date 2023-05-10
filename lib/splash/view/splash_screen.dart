@@ -31,6 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (nextSum == 7) {
         //설명화면으로 전환
         context.pushNamed(ExplanScreen.routeName);
+
         timer.cancel();
       }
       setState(() {});

@@ -1,18 +1,25 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:lucky_carnation/main/view/result_screen.dart';
 
 //코드 정리 필요...
 
-class SelectScreen extends StatelessWidget {
+class SelectScreen extends StatefulWidget {
   static String get routeName => 'SelectScreen';
   const SelectScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    int selectNum = 0;
-    final wordToStyle = '행운의 카네이션';
-    final wordStyle = TextStyle(color: Colors.red);
+  State<SelectScreen> createState() => _SelectScreenState();
+}
 
+class _SelectScreenState extends State<SelectScreen> {
+  int selectNum = 0;
+  final wordToStyle = '행운의 카네이션';
+  final wordStyle = TextStyle(color: Colors.red);
+  late Text selectText;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.indigo,
       body: Row(
@@ -90,10 +97,9 @@ class SelectScreen extends StatelessWidget {
                                   heroTag:
                                       'btn1', //floatingActionButton은 이거 지정해줘야 여러개 쓸 수 잇음
                                   onPressed: () {
-                                    print('');
-                                    selectNumber(num);
+                                    selectText.data;
                                   },
-                                  child: Text('1'),
+                                  child: textWidget(1),
                                 ),
                               ),
                               Container(
@@ -101,9 +107,9 @@ class SelectScreen extends StatelessWidget {
                                 child: FloatingActionButton(
                                   heroTag: 'btn2',
                                   onPressed: () {
-                                    selectNumber(num);
+                                    selectText.data;
                                   },
-                                  child: Text('2'),
+                                  child: textWidget(2),
                                 ),
                               ),
                               Container(
@@ -111,9 +117,9 @@ class SelectScreen extends StatelessWidget {
                                 child: FloatingActionButton(
                                   heroTag: 'btn3',
                                   onPressed: () {
-                                    selectNumber(num);
+                                    selectText.data;
                                   },
-                                  child: Text('3'),
+                                  child: textWidget(3),
                                 ),
                               ),
                               Container(
@@ -121,9 +127,9 @@ class SelectScreen extends StatelessWidget {
                                 child: FloatingActionButton(
                                   heroTag: 'btn4',
                                   onPressed: () {
-                                    selectNumber(num);
+                                    selectText.data;
                                   },
-                                  child: Text('4'),
+                                  child: textWidget(4),
                                 ),
                               ),
                               Container(
@@ -131,9 +137,9 @@ class SelectScreen extends StatelessWidget {
                                 child: FloatingActionButton(
                                   heroTag: 'btn5',
                                   onPressed: () {
-                                    selectNumber(num);
+                                    selectText.data;
                                   },
-                                  child: Text('5'),
+                                  child: textWidget(5),
                                 ),
                               ),
                             ],
@@ -149,9 +155,9 @@ class SelectScreen extends StatelessWidget {
                                 child: FloatingActionButton(
                                   heroTag: 'btn6',
                                   onPressed: () {
-                                    selectNumber(num);
+                                    selectText.data;
                                   },
-                                  child: Text('6'),
+                                  child: textWidget(6),
                                 ),
                               ),
                               Container(
@@ -159,9 +165,9 @@ class SelectScreen extends StatelessWidget {
                                 child: FloatingActionButton(
                                   heroTag: 'btn7',
                                   onPressed: () {
-                                    selectNumber(num);
+                                    selectText.data;
                                   },
-                                  child: Text('7'),
+                                  child: textWidget(7),
                                 ),
                               ),
                               Container(
@@ -169,9 +175,9 @@ class SelectScreen extends StatelessWidget {
                                 child: FloatingActionButton(
                                   heroTag: 'btn8',
                                   onPressed: () {
-                                    selectNumber(num);
+                                    selectText.data;
                                   },
-                                  child: Text('8'),
+                                  child: textWidget(8),
                                 ),
                               ),
                               Container(
@@ -179,9 +185,9 @@ class SelectScreen extends StatelessWidget {
                                 child: FloatingActionButton(
                                   heroTag: 'btn9',
                                   onPressed: () {
-                                    selectNumber(num);
+                                    selectText.data;
                                   },
-                                  child: Text('9'),
+                                  child: textWidget(9),
                                 ),
                               ),
                               Container(
@@ -189,9 +195,9 @@ class SelectScreen extends StatelessWidget {
                                 child: FloatingActionButton(
                                   heroTag: 'btn0',
                                   onPressed: () {
-                                    selectNumber(num);
+                                    selectText.data;
                                   },
-                                  child: Text('0'),
+                                  child: textWidget(0),
                                 ),
                               ),
                             ],
@@ -207,9 +213,9 @@ class SelectScreen extends StatelessWidget {
                                 child: FloatingActionButton(
                                   heroTag: 'btn11',
                                   onPressed: () {
-                                    selectNumber(num);
+                                    selectText.data;
                                   },
-                                  child: Text('11'),
+                                  child: textWidget(11),
                                 ),
                               ),
                               Container(
@@ -217,9 +223,9 @@ class SelectScreen extends StatelessWidget {
                                 child: FloatingActionButton(
                                   heroTag: 'btn12',
                                   onPressed: () {
-                                    selectNumber(num);
+                                    selectText.data;
                                   },
-                                  child: Text('12'),
+                                  child: textWidget(12),
                                 ),
                               ),
                               Container(
@@ -227,9 +233,9 @@ class SelectScreen extends StatelessWidget {
                                 child: FloatingActionButton(
                                   heroTag: 'btn13',
                                   onPressed: () {
-                                    selectNumber(num);
+                                    selectText.data;
                                   },
-                                  child: Text('13'),
+                                  child: textWidget(13),
                                 ),
                               ),
                               Container(
@@ -237,9 +243,10 @@ class SelectScreen extends StatelessWidget {
                                 child: FloatingActionButton(
                                   heroTag: 'btn14',
                                   onPressed: () {
-                                    selectNumber(num);
+                                    selectNum = 13;
+                                    print(selectText.data); //선택한 버튼 값 알려고ㅜㅜ
                                   },
-                                  child: Text('14'),
+                                  child: textWidget(14),
                                 ),
                               ),
                               Container(
@@ -247,9 +254,10 @@ class SelectScreen extends StatelessWidget {
                                 child: FloatingActionButton(
                                   heroTag: 'btn15',
                                   onPressed: () {
-                                    selectNumber(num);
+                                    print('selectText.data');
+                                    print(selectText.data); //선택한 버튼 값 알려고ㅜㅜ
                                   },
-                                  child: Text('15'),
+                                  child: textWidget(15),
                                 ),
                               ),
                             ],
@@ -302,7 +310,7 @@ class SelectScreen extends StatelessWidget {
                                 child: ElevatedButton(
                                   onPressed: () {
                                     //context.pushNamed(ResultScreen.routeName); context가 안찍힘..;
-
+                                    playSounds();
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                           builder: (_) => ResultScreen()),
@@ -326,10 +334,16 @@ class SelectScreen extends StatelessWidget {
     );
   }
 
-  void selectNumber(num) {
-    // if () {
-    //   showAboutDialog(context: Text('하나만 선택이 가능해요'));
-    //   return;
-    // }
+  void selectNumber(bool isSelect) {}
+
+  Widget textWidget(int num) {
+    selectText = Text(num.toString());
+    return Text(num.toString());
+  }
+
+  Future<void> playSounds() async {
+    AudioPlayer? audioPlayer = AudioPlayer();
+
+    await audioPlayer.play(DeviceFileSource('assets/mp3/mouse_click.mp3'));
   }
 }
