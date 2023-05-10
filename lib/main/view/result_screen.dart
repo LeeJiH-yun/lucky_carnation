@@ -80,16 +80,6 @@ class _ResultScreenState extends State<ResultScreen>
                     SizedBox(
                       height: 30.0,
                     ),
-                    Container(
-                      width: 200,
-                      height: 200,
-                      child: Image.asset(
-                        'assets/images/상품브로치.png',
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30.0,
-                    ),
                     Text(
                       '1등입니당',
                       style: TextStyle(
@@ -99,7 +89,14 @@ class _ResultScreenState extends State<ResultScreen>
                     ),
                     SizedBox(
                       height: 30.0,
-                    )
+                    ),
+                    Container(
+                      width: 300,
+                      height: 300,
+                      child: Image.asset(
+                        'assets/images/상품브로치.png',
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -151,7 +148,7 @@ class _ResultScreenState extends State<ResultScreen>
             ),
           ),
           Positioned(
-            top: 600,
+            top: 620,
             child: InkWell(
               onTap: () {
                 Navigator.of(context).push(
@@ -169,7 +166,7 @@ class _ResultScreenState extends State<ResultScreen>
             ),
           ),
           Positioned(
-            top: 980,
+            top: 890,
             child: InkWell(
               onTap: () {
                 Navigator.of(context).push(
@@ -179,7 +176,9 @@ class _ResultScreenState extends State<ResultScreen>
               child: Container(
                 width: 100,
                 height: 100,
-                child: Text('설명 화면으로!'),
+                child: Image.asset(
+                  'assets/images/test_imag.png',
+                ),
               ),
             ),
           ),
