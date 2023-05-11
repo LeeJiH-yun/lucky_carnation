@@ -15,12 +15,19 @@ class ExplanScreen extends StatefulWidget {
 
 class _ExplanScreenState extends State<ExplanScreen> {
   bool selected = true; //클릭 이벤트시 사용
-  late KeyboardEvent keyboardEvent;
+  AudioPlayer? audioPlayerback;
 
   @override
   void initState() {
-    keyboardEvent = KeyboardEvent();
+    _init();
     super.initState();
+  }
+
+  Future<void> _init() async {
+    audioPlayerback = AudioPlayer();
+    await audioPlayerback!.setReleaseMode(ReleaseMode.loop);
+    await audioPlayerback!
+        .play(DeviceFileSource('assets/mp3/background_music.mp3'));
   }
 
   @override
@@ -118,6 +125,8 @@ class _ExplanScreenState extends State<ExplanScreen> {
                                 builder: (context) => SelectScreen(),
                               ),
                             );
+                            audioPlayerback!
+                                .stop(); //화면이동시 음악 멈춰준다. 안그러면 안 멈추..
                             // context.pushNamed(
                             //     SelectScreen.routeName);
                           },
@@ -172,10 +181,10 @@ class _ExplanScreenState extends State<ExplanScreen> {
 
     if (type == 'press') {
       //버튼 클릭시
-      await audioPlayer.play(DeviceFileSource('assets/mp3/mouse_click.mp3'));
+      await audioPlayer.play(DeviceFileSource('assets/mp3/시작버튼효과음.mp3'));
     } else {
       //마우스를 올렸을 경우
-      await audioPlayer.play(DeviceFileSource('assets/mp3/button_focus.mp3'));
+      await audioPlayer.play(DeviceFileSource('assets/mp3/버튼에올렸을때효과음.mp3'));
     }
   }
 }

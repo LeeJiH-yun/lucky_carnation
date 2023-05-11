@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucky_carnation/main/view/explan_screen.dart';
@@ -15,9 +16,12 @@ class _SplashScreenState extends State<SplashScreen> {
   int index = 0;
   int nextSum = 0;
   Timer? timer;
+  AudioPlayer? audioPlayer;
 
   @override
   void initState() {
+    _init();
+
     timer = Timer.periodic(Duration(seconds: 1), (timer) {
       for (int i = index; i <= 4; i++) {
         print('index $index');
@@ -32,13 +36,20 @@ class _SplashScreenState extends State<SplashScreen> {
         //설명화면으로 전환
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => ExplanScreen()));
-
+        audioPlayer!.stop(); //아오 음악이 안 멈춰서 화면 이동시 멈춰준다.
         timer.cancel();
       }
       setState(() {});
     });
 
     super.initState();
+  }
+
+  Future<void> _init() async {
+    audioPlayer = AudioPlayer();
+    await audioPlayer!.setReleaseMode(ReleaseMode.loop);
+    await audioPlayer!
+        .play(DeviceFileSource('assets/mp3/background_music.mp3'));
   }
 
   @override

@@ -53,9 +53,11 @@ class _MyAppState extends State<MyApp> {
     await DesktopWindow.setFullScreen(
         true); //맨처음에 꽉 찬 화면 됐다가 windows안의 main.cpp로 인해 창이 변하는 거 같다.
     audioPlayer = AudioPlayer();
+    // final test = ref.watch();
+    // if ()
     await audioPlayer!.setReleaseMode(ReleaseMode.loop);
-    await audioPlayer!
-        .play(DeviceFileSource('assets/mp3/background_music.mp3'));
+    // await audioPlayer!
+    //     .play(DeviceFileSource('assets/mp3/background_music.mp3'));
   }
 
   // GoRouter get _router => GoRouter(
@@ -116,6 +118,7 @@ class _MyAppState extends State<MyApp> {
             await setSingleScreen();
           }
         },
+        //child: SplashScreen(),
         child: SelectScreen(),
         // child: ResultScreen(
         //   selectNum: 1,

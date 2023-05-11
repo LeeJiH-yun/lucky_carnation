@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lucky_carnation/main/riverpod/back_screen_provider.dart';
 import 'package:lucky_carnation/main/riverpod/num_notifier_provider.dart';
 import 'package:lucky_carnation/main/view/explan_screen.dart';
 import 'package:lucky_carnation/main/view/selelct_screen.dart';
@@ -23,6 +24,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen>
   Timer? timer;
   bool isVisible = false;
   AudioPlayer? audioPlayer = AudioPlayer();
+  AudioPlayer? audioPlayeranimation = AudioPlayer();
   String? text; //멘트
   String? imageResult; //이미지 url
 
@@ -34,15 +36,16 @@ class _ResultScreenState extends ConsumerState<ResultScreen>
         AnimationController(vsync: this, duration: Duration(seconds: 2));
     _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
 
+    //audioPlayer.play(source)
+    playSounds('animation');
     _controller.forward(); //이게 있어야 fade제대로 댐
 
     timer = Timer.periodic(Duration(seconds: 3), (timer) {
-      playSounds();
-      audioPlayer!.stop();
       setState(() {
         //애니메이션이 다 올라오고 난 후 당첨을 표시하기 위해 타이머 사용
         isVisible = true;
         textResult(); //멘트 결과
+        playSounds('result');
       });
     });
   }
@@ -76,7 +79,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen>
             ),
           ),
           Positioned(
-            top: 200,
+            top: MediaQuery.of(context).size.width == 1920 ? 200 : 150,
             child: Visibility(
               visible: isVisible,
               child: Container(
@@ -125,6 +128,42 @@ class _ResultScreenState extends ConsumerState<ResultScreen>
               ),
             ),
           ),
+          Positioned(
+            top: MediaQuery.of(context).size.width == 1920 ? 400 : 280,
+            left: 200,
+            child: Container(
+              child: Image.asset(
+                'assets/images/카네이션_3.png',
+              ),
+            ),
+          ),
+          Positioned(
+            top: MediaQuery.of(context).size.width == 1920 ? 450 : 320,
+            left: 150,
+            child: Container(
+              child: Image.asset(
+                'assets/images/카네이션_3.png',
+              ),
+            ),
+          ),
+          Positioned(
+            top: MediaQuery.of(context).size.width == 1920 ? 450 : 320,
+            right: 250,
+            child: Container(
+              child: Image.asset(
+                'assets/images/카네이션_4.png',
+              ),
+            ),
+          ),
+          Positioned(
+            top: MediaQuery.of(context).size.width == 1920 ? 400 : 280,
+            right: 200,
+            child: Container(
+              child: Image.asset(
+                'assets/images/카네이션_4.png',
+              ),
+            ),
+          ),
           Container(
             width: MediaQuery.of(context).size.width,
             child: Image.asset(
@@ -135,43 +174,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen>
             ),
           ),
           Positioned(
-            top: 400,
-            left: 200,
-            child: Container(
-              child: Image.asset(
-                'assets/images/카네이션_3.png',
-              ),
-            ),
-          ),
-          Positioned(
-            top: 450,
-            left: 150,
-            child: Container(
-              child: Image.asset(
-                'assets/images/카네이션_3.png',
-              ),
-            ),
-          ),
-          Positioned(
-            top: 450,
-            right: 250,
-            child: Container(
-              child: Image.asset(
-                'assets/images/카네이션_4.png',
-              ),
-            ),
-          ),
-          Positioned(
-            top: 400,
-            right: 200,
-            child: Container(
-              child: Image.asset(
-                'assets/images/카네이션_4.png',
-              ),
-            ),
-          ),
-          Positioned(
-            top: 670,
+            top: MediaQuery.of(context).size.width == 1920 ? 670 : 550,
             right: 100,
             child: InkWell(
               onTap: () {
@@ -196,6 +199,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen>
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (_) => ExplanScreen()),
                 );
+                audioPlayer!.stop(); //왜케 화면 이동시 안 멈춰가지고!!! 잉..
               },
               child: Container(
                 width: 100,
@@ -228,15 +232,35 @@ class _ResultScreenState extends ConsumerState<ResultScreen>
     }
   }
 
-  Future<void> playSounds() async {
-    bool istest = false;
-
-    await audioPlayer!.play(DeviceFileSource('assets/mp3/result.mp3'));
-    istest = true;
-
-    if (istest) {
-      //효과음이 한 번만 나오게끔 수정..
-      //await audioPlayer.stop();
+  Future<void> playSounds(String type) async {
+    if (type == 'result') {
+      //결과효과음
+      if (widget.selectNum == 1 || //3등
+          widget.selectNum == 8 ||
+          widget.selectNum == 14) {
+        await audioPlayer!.play(DeviceFileSource('assets/mp3/결과3등효과음.mp3'));
+        Timer.periodic(Duration(seconds: 6), (timer) {
+          //효과음이 도저히 안 멈춰서 최후의 선택..
+          audioPlayer!.stop();
+        });
+      } else if (widget.selectNum == 2 || //1등
+          widget.selectNum == 5 ||
+          widget.selectNum == 13 ||
+          widget.selectNum == 10) {
+        await audioPlayer!.play(DeviceFileSource('assets/mp3/결과1등효과음.mp3'));
+        Timer.periodic(Duration(seconds: 6), (timer) {
+          audioPlayer!.stop();
+        });
+      } else {
+        //2등
+        await audioPlayer!.play(DeviceFileSource('assets/mp3/결과2등효과음.mp3'));
+        Timer.periodic(Duration(seconds: 6), (timer) {
+          audioPlayer!.stop();
+        });
+      }
+    } else {
+      //애니메이션 올라갈때 효과음
+      await audioPlayer!.play(DeviceFileSource('assets/mp3/애니메이션올라가는효과음.mp3'));
     }
   }
 }
