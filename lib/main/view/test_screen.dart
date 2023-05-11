@@ -2,21 +2,19 @@ import 'dart:async';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lucky_carnation/main/riverpod/num_notifier_provider.dart';
 import 'package:lucky_carnation/main/view/explan_screen.dart';
 import 'package:lucky_carnation/main/view/selelct_screen.dart';
 
-class ResultScreen extends ConsumerStatefulWidget {
+class ResultScreen extends StatefulWidget {
   final int selectNum; //이전화면에서 선택한 값으로 당첨여부확인
   static String get routeName => 'ResultScreen';
   const ResultScreen({super.key, required this.selectNum});
 
   @override
-  ConsumerState<ResultScreen> createState() => _ResultScreenState();
+  State<ResultScreen> createState() => _ResultScreenState();
 }
 
-class _ResultScreenState extends ConsumerState<ResultScreen>
+class _ResultScreenState extends State<ResultScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -28,7 +26,6 @@ class _ResultScreenState extends ConsumerState<ResultScreen>
 
   @override
   void initState() {
-    //넘어온 데이터로 저장해준다.
     super.initState();
     _controller =
         AnimationController(vsync: this, duration: Duration(seconds: 2));
@@ -175,6 +172,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen>
             right: 100,
             child: InkWell(
               onTap: () {
+                Navigator.pop(context, widget.selectNum);
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (_) => SelectScreen()),
                 );

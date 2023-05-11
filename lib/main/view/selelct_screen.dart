@@ -1,25 +1,44 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lucky_carnation/main/model/number_model.dart';
+import 'package:lucky_carnation/main/riverpod/num_notifier_provider.dart';
 import 'package:lucky_carnation/main/view/result_screen.dart';
 
 //코드 정리 필요...
 
-class SelectScreen extends StatefulWidget {
+class SelectScreen extends ConsumerStatefulWidget {
   static String get routeName => 'SelectScreen';
   const SelectScreen({super.key});
 
   @override
-  State<SelectScreen> createState() => _SelectScreenState();
+  ConsumerState<SelectScreen> createState() => _SelectScreenState();
 }
 
-class _SelectScreenState extends State<SelectScreen> {
-  int selectNum = 0;
+class _SelectScreenState extends ConsumerState<SelectScreen> {
+  int selectNum = 1;
   final wordToStyle = '행운의 카네이션';
   final wordStyle = TextStyle(color: Colors.red);
   late Text selectText;
+  bool isClick = false; //클릭 여부
+  int chkNum = 0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    //late int returnData = 0;
+
+    final test = ref.read(numberProvider);
+    // final test2 = ref.read(numListProvider);
+    // final List<NumberModel> state = ref.watch(numListProvider);
+
+    bool visible = true;
+
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -89,111 +108,93 @@ class _SelectScreenState extends State<SelectScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              InkWell(
-                                onHover: (value) {},
-                                onTap: () {},
-                                child: Container(
-                                  width: 80,
-                                  child: Image.asset(
-                                    'assets/images/숫자_1.png',
+                              Opacity(
+                                //visibility 사용했더니 공간도 사라져서 ui가 이상해짐
+                                opacity: test == 1
+                                    ? 0.0
+                                    : 1.0, //1이 들어있다는 건 이미 한번 선택했다는..
+                                child: InkWell(
+                                  onHover: (value) {},
+                                  onTap: () {
+                                    setState(() {
+                                      var test = 1;
+                                      isClick = !isClick;
+                                      selectNum = test;
+                                    });
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    color: isClick
+                                        ? Color(0XFFFFA7A7)
+                                        : Colors.transparent,
+                                    child: Image.asset(
+                                      'assets/images/숫자_1.png',
+                                    ),
                                   ),
                                 ),
                               ),
-                              InkWell(
-                                onHover: (value) {},
-                                onTap: () {},
-                                child: Container(
-                                  width: 80,
-                                  child: Image.asset(
-                                    'assets/images/숫자_2.png',
+                              Opacity(
+                                //opacity: state.where((e) => e.name == 2) == 2
+                                opacity: test == 2 ? 0.0 : 1.0,
+                                child: InkWell(
+                                  onHover: (value) {},
+                                  onTap: () {
+                                    selectNum = 2;
+                                    isClick = !isClick;
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    child: Image.asset(
+                                      'assets/images/숫자_2.png',
+                                    ),
                                   ),
                                 ),
                               ),
-                              InkWell(
-                                onHover: (value) {},
-                                onTap: () {},
-                                child: Container(
-                                  width: 80,
-                                  child: Image.asset(
-                                    'assets/images/숫자_3.png',
+                              Opacity(
+                                opacity: 1.0,
+                                child: InkWell(
+                                  onHover: (value) {},
+                                  onTap: () {
+                                    selectNum = 3;
+                                    isClick = !isClick;
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    child: Image.asset(
+                                      'assets/images/숫자_3.png',
+                                    ),
                                   ),
                                 ),
                               ),
-                              InkWell(
-                                onHover: (value) {},
-                                onTap: () {},
-                                child: Container(
-                                  width: 80,
-                                  child: Image.asset(
-                                    'assets/images/숫자_4.png',
+                              Opacity(
+                                opacity: 1.0,
+                                child: InkWell(
+                                  onHover: (value) {},
+                                  onTap: () {
+                                    selectNum = 4;
+                                    isClick = !isClick;
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    child: Image.asset(
+                                      'assets/images/숫자_4.png',
+                                    ),
                                   ),
                                 ),
                               ),
-                              InkWell(
-                                onHover: (value) {},
-                                onTap: () {},
-                                child: Container(
-                                  width: 80,
-                                  child: Image.asset(
-                                    'assets/images/숫자_5.png',
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 50.0,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              InkWell(
-                                onHover: (value) {},
-                                onTap: () {},
-                                child: Container(
-                                  width: 80,
-                                  child: Image.asset(
-                                    'assets/images/숫자_6.png',
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onHover: (value) {},
-                                onTap: () {},
-                                child: Container(
-                                  width: 80,
-                                  child: Image.asset(
-                                    'assets/images/숫자_7.png',
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onHover: (value) {},
-                                onTap: () {},
-                                child: Container(
-                                  width: 80,
-                                  child: Image.asset(
-                                    'assets/images/숫자_8.png',
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onHover: (value) {},
-                                onTap: () {},
-                                child: Container(
-                                  width: 80,
-                                  child: Image.asset(
-                                    'assets/images/숫자_9.png',
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onHover: (value) {},
-                                onTap: () {},
-                                child: Container(
-                                  width: 80,
-                                  child: Image.asset(
-                                    'assets/images/숫자_10.png',
+                              Opacity(
+                                opacity: 1.0,
+                                child: InkWell(
+                                  onHover: (value) {},
+                                  onTap: () {
+                                    selectNum = 5;
+                                    isClick = !isClick;
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    child: Image.asset(
+                                      'assets/images/숫자_5.png',
+                                    ),
                                   ),
                                 ),
                               ),
@@ -205,55 +206,171 @@ class _SelectScreenState extends State<SelectScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              InkWell(
-                                onHover: (value) {},
-                                onTap: () {},
-                                child: Container(
-                                  width: 80,
-                                  child: Image.asset(
-                                    'assets/images/숫자_11.png',
+                              Opacity(
+                                opacity: 1.0,
+                                child: InkWell(
+                                  onHover: (value) {},
+                                  onTap: () {
+                                    selectNum = 6;
+                                    isClick = !isClick;
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    child: Image.asset(
+                                      'assets/images/숫자_6.png',
+                                    ),
                                   ),
                                 ),
                               ),
-                              InkWell(
-                                onHover: (value) {},
-                                onTap: () {},
-                                child: Container(
-                                  width: 80,
-                                  child: Image.asset(
-                                    'assets/images/숫자_12.png',
+                              Opacity(
+                                opacity: 1.0,
+                                child: InkWell(
+                                  onHover: (value) {},
+                                  onTap: () {
+                                    selectNum = 7;
+                                    isClick = !isClick;
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    child: Image.asset(
+                                      'assets/images/숫자_7.png',
+                                    ),
                                   ),
                                 ),
                               ),
-                              InkWell(
-                                onHover: (value) {},
-                                onTap: () {},
-                                child: Container(
-                                  width: 80,
-                                  child: Image.asset(
-                                    'assets/images/숫자_13.png',
+                              Opacity(
+                                opacity: 1.0,
+                                child: InkWell(
+                                  onHover: (value) {},
+                                  onTap: () {
+                                    selectNum = 8;
+                                    isClick = !isClick;
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    child: Image.asset(
+                                      'assets/images/숫자_8.png',
+                                    ),
                                   ),
                                 ),
                               ),
-                              InkWell(
-                                onHover: (value) {},
-                                onTap: () {},
-                                child: Container(
-                                  width: 80,
-                                  child: Image.asset(
-                                    'assets/images/숫자_14.png',
+                              Opacity(
+                                opacity: 1.0,
+                                child: InkWell(
+                                  onHover: (value) {},
+                                  onTap: () {
+                                    selectNum = 9;
+                                    isClick = !isClick;
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    child: Image.asset(
+                                      'assets/images/숫자_9.png',
+                                    ),
                                   ),
                                 ),
                               ),
-                              InkWell(
-                                onHover: (value) {},
-                                onTap: () {
-                                  selectNum = 15;
-                                },
-                                child: Container(
-                                  width: 80,
-                                  child: Image.asset(
-                                    'assets/images/숫자_15.png',
+                              Opacity(
+                                opacity: 1.0,
+                                child: InkWell(
+                                  onHover: (value) {},
+                                  onTap: () {
+                                    selectNum = 10;
+                                    isClick = !isClick;
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    child: Image.asset(
+                                      'assets/images/숫자_10.png',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 50.0,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Opacity(
+                                opacity: 1.0,
+                                child: InkWell(
+                                  onHover: (value) {},
+                                  onTap: () {
+                                    selectNum = 11;
+                                    isClick = !isClick;
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    child: Image.asset(
+                                      'assets/images/숫자_11.png',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Opacity(
+                                opacity: 1.0,
+                                child: InkWell(
+                                  onHover: (value) {},
+                                  onTap: () {
+                                    selectNum = 12;
+                                    isClick = !isClick;
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    child: Image.asset(
+                                      'assets/images/숫자_12.png',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Opacity(
+                                opacity: 1.0,
+                                child: InkWell(
+                                  onHover: (value) {},
+                                  onTap: () {
+                                    selectNum = 13;
+                                    isClick = !isClick;
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    child: Image.asset(
+                                      'assets/images/숫자_13.png',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Opacity(
+                                opacity: 1.0,
+                                child: InkWell(
+                                  onHover: (value) {},
+                                  onTap: () {
+                                    selectNum = 14;
+                                    isClick = !isClick;
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    child: Image.asset(
+                                      'assets/images/숫자_14.png',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Opacity(
+                                opacity: 1.0,
+                                child: InkWell(
+                                  onHover: (value) {},
+                                  onTap: () {
+                                    selectNum = 15;
+                                    isClick = !isClick;
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    child: Image.asset(
+                                      'assets/images/숫자_15.png',
+                                    ),
                                   ),
                                 ),
                               ),
@@ -268,13 +385,33 @@ class _SelectScreenState extends State<SelectScreen> {
                               Container(
                                 height: 50,
                                 child: ElevatedButton(
-                                  onPressed: () {
-                                    //context.pushNamed(ResultScreen.routeName); context가 안찍힘..;
+                                  onPressed: () async {
                                     playSounds();
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (_) => ResultScreen()),
-                                    );
+                                    if (!isClick) {
+                                      //showToast();
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                              content: Text('숫자 선택하세용')));
+                                      //선택안했으면 막아야함
+                                      return;
+                                    } else {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => ResultScreen(
+                                              selectNum: selectNum),
+                                        ),
+                                      );
+                                    }
+                                    // ref.read(numListProvider.notifier).chkBtn(
+                                    //     name: selectNum); //선택된 숫자의 값을 바꿔
+                                    // if (selectNum == 1) {
+                                    ref.read(numberProvider.notifier).state =
+                                        selectNum; //버튼 누르면서 값을 바꿔야.. 왜지
+                                    // } else {
+                                    //   ref.read(twonumProvider.notifier).state =
+                                    //       selectNum;
+                                    // }
                                   },
                                   child: Text('결과보기'),
                                 ),
@@ -295,6 +432,16 @@ class _SelectScreenState extends State<SelectScreen> {
   }
 
   void selectNumber(bool isSelect) {}
+  void showToast() {
+    Fluttertoast.showToast(
+      msg: '숫자를 선택하세요!',
+      gravity: ToastGravity.BOTTOM,
+      backgroundColor: Colors.redAccent,
+      fontSize: 20,
+      textColor: Colors.white,
+      toastLength: Toast.LENGTH_SHORT,
+    );
+  }
 
   Widget textWidget(int num) {
     selectText = Text(num.toString());

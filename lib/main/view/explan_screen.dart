@@ -1,7 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:keyboard_event/keyboard_event.dart';
 import 'package:lucky_carnation/main/view/selelct_screen.dart';
+import 'package:window_manager/window_manager.dart';
 
 class ExplanScreen extends StatefulWidget {
   static String get routeName => 'ExplanScreen';
@@ -12,8 +14,12 @@ class ExplanScreen extends StatefulWidget {
 }
 
 class _ExplanScreenState extends State<ExplanScreen> {
+  bool selected = true; //클릭 이벤트시 사용
+  late KeyboardEvent keyboardEvent;
+
   @override
   void initState() {
+    keyboardEvent = KeyboardEvent();
     super.initState();
   }
 
@@ -40,7 +46,7 @@ class _ExplanScreenState extends State<ExplanScreen> {
                 ),
               ),
               Positioned(
-                bottom: 410,
+                bottom: 450,
                 right: 820,
                 child: Container(
                   width: 250,
@@ -61,42 +67,69 @@ class _ExplanScreenState extends State<ExplanScreen> {
                   ),
                 ),
               ),
-              Container(
-                child: Text(
-                  '어버이주일을 맞이하여 \n 색다르게 준비해보았습니다.\n 행운의 카네이션은 누구에게로?',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30.0,
+              Positioned(
+                top: 200,
+                child: Container(
+                  child: Text(
+                    '어버이주일을 맞이하여 \n 색다르게 준비해보았습니다.\n 행운의 카네이션은 누구에게로?',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30.0,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
               Positioned(
                 top: 370,
                 left: 440,
-                child: InkWell(
-                  onHover: (value) {
-                    if (value) {
-                      playSounds('hover'); //효과음 넣기
-                    }
-                  },
-                  onTap: () {
-                    playSounds('press'); //효과음 넣기
-                    //시작 화면으로 이동하기
-                    context.pushNamed(SelectScreen.routeName);
-                  },
-                  child: Container(
-                    width: 200,
-                    height: 200,
-                    child: Image.asset(
-                      'assets/images/start_button.png',
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Container(
+                      width: 200,
+                      height: 200,
+                      child: Image.asset(
+                        'assets/images/start_button.png',
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      top: 52,
+                      width: 200,
+                      height: 100,
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(50),
+                          onHover: (value) {
+                            if (value) {
+                              playSounds('hover'); //효과음 넣기
+                            }
+                          },
+                          onTap: () {
+                            playSounds('press'); //효과음 넣기
+                            setState(() {
+                              selected = !selected;
+                            });
+                            //시작 화면으로 이동하기
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SelectScreen(),
+                              ),
+                            );
+                            // context.pushNamed(
+                            //     SelectScreen.routeName);
+                          },
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
               Positioned(
                 top: 380,
-                left: 820,
+                left: 830,
                 child: Container(
                   width: 250,
                   height: 250,
@@ -104,106 +137,35 @@ class _ExplanScreenState extends State<ExplanScreen> {
                     'assets/images/explain_carnation_two.png',
                   ),
                 ),
+              ),
+              Positioned(
+                top: 400,
+                left: 780,
+                child: Container(
+                  width: 250,
+                  height: 250,
+                  child: Image.asset(
+                    'assets/images/explain_carnation_two.png',
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 500,
+                left: 880,
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  child: Image.asset(
+                    'assets/images/카네이션_5_좌우반전.png',
+                  ),
+                ),
               )
             ],
           ),
         ),
       ),
-      // child: Container(
-      //   height: 100,
-      //   decoration: const BoxDecoration(
-      //     image: DecorationImage(
-      //       fit: BoxFit.contain,
-      //       image: AssetImage('assets/images/explain_text_back.png'), // 편지지 이미지
-      //     ),
-      //   ),
-      //   child: Scaffold(
-      //     resizeToAvoidBottomInset: false,
-      //     backgroundColor: Colors.transparent,
-      //     body: Center(
-      //       child: Column(
-      //         children: [
-      //           Container(
-      //             height: 5000,
-      //             color: Colors.blue,
-      //             child: Text('프로그램 소개 텍스트 배치'),
-      //           ),
-      //           Container(
-      //             child: Text('공간입니다.'),
-      //           ),
-      //           SizedBox(
-      //             height: 100,
-      //             width: 300,
-      //             child: ElevatedButton(
-      //               onHover: (value) {
-      //                 if (value) {
-      //                   playSounds('hover'); //효과음 넣기
-      //                 }
-      //               },
-      //               onPressed: () {
-      //                 playSounds('press'); //효과음 넣기
-      //                 //시작 화면으로 이동하기
-      //                 context.pushNamed(SelectScreen.routeName);
-      //               },
-      //               child: Text(
-      //                 'START',
-      //                 style: TextStyle(fontSize: 23.0),
-      //               ),
-      //               style:
-      //                   ElevatedButton.styleFrom(padding: EdgeInsets.all(10)),
-      //             ),
-      //           )
-      //         ],
-      //       ),
-      //     ),
-      //   ),
-      // ),
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     backgroundColor: Colors.lightBlue,
-  //     body: Center(
-  //       child: Container(
-  //         width: 1000,
-  //         height: 500,
-  //         color: Colors.white,
-  //         child: Column(
-  //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  //           children: [
-  //             Text(
-  //               '  프로그램 소개\n텍스트 배치 공간',
-  //               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0),
-  //             ),
-  //             SizedBox(
-  //               height: 100,
-  //               width: 300,
-  //               child: ElevatedButton(
-  //                 onHover: (value) {
-  //                   if (value) {
-  //                     playSounds('hover'); //효과음 넣기
-  //                   }
-  //                 },
-  //                 onPressed: () {
-  //                   playSounds('press'); //효과음 넣기
-  //                   //시작 화면으로 이동하기
-  //                   context.pushNamed(SelectScreen.routeName);
-  //                 },
-  //                 child: Text(
-  //                   'START',
-  //                   style: TextStyle(fontSize: 23.0),
-  //                 ),
-  //                 style: ElevatedButton.styleFrom(padding: EdgeInsets.all(10)),
-  //               ),
-  //             )
-  //           ],
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   Future<void> playSounds(String type) async {
     AudioPlayer? audioPlayer = AudioPlayer();
