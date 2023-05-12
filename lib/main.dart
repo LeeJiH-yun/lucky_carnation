@@ -13,11 +13,12 @@ import 'dart:developer' as developer;
 import 'package:window_manager/window_manager.dart';
 
 /*
-  수정사항
-  1. 노래가 설명화면으로 가면 맨 처음부터 다시 시작했으면 좋겠다.
-  2. 숫자 선택시 선택한 숫자를 알아내야 당첨/꽝을 가릴 수 있음
-  3. 당첨일 경우/ 꽝일 경우 효과음? 또는 버튼 선택시 효과음 어떻게 처리할 것인가 @
-  4. 앱 시작시 전체 화면으로 전환되게 해야함 @
+  1등 생화 약 10000원 * 4명 
+  => 2, 5, 13, 10
+  2등 브로치 약 5000원 * 8명
+  => 3, 4, 6, 7, 9, 11, 12, 15
+  3등 종이접기 + 성경책 커버 3명 (15000 * 3) 
+  => 1, 8, 14
 
   앱 exe파일로 꺼낼때
   - 하단 터미널에 flutter build windows 하면 /build/windows/runner/Release 경로에 파일이 생긴다.
@@ -118,11 +119,7 @@ class _MyAppState extends State<MyApp> {
             await setSingleScreen();
           }
         },
-        //child: SplashScreen(),
-        child: SelectScreen(),
-        // child: ResultScreen(
-        //   selectNum: 1,
-        // )
+        child: SplashScreen(),
       ),
     );
   }
