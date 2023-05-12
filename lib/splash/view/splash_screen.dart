@@ -48,8 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _init() async {
     audioPlayer = AudioPlayer();
     await audioPlayer!.setReleaseMode(ReleaseMode.loop);
-    await audioPlayer!
-        .play(DeviceFileSource('assets/mp3/background_music.mp3'));
+    await audioPlayer!.play(AssetSource('mp3/background_music.mp3'));
   }
 
   @override

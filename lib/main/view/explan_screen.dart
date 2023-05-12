@@ -27,8 +27,7 @@ class _ExplanScreenState extends State<ExplanScreen> {
   Future<void> _init() async {
     audioPlayerback = AudioPlayer();
     await audioPlayerback!.setReleaseMode(ReleaseMode.loop);
-    await audioPlayerback!
-        .play(DeviceFileSource('assets/mp3/background_music.mp3'));
+    await audioPlayerback!.play(AssetSource('mp3/background_music.mp3'));
   }
 
   @override
@@ -195,10 +194,10 @@ class _ExplanScreenState extends State<ExplanScreen> {
 
     if (type == 'press') {
       //버튼 클릭시
-      await audioPlayer.play(DeviceFileSource('assets/mp3/시작버튼효과음.mp3'));
+      await audioPlayer.play(AssetSource('mp3/start_button.mp3'));
     } else {
       //마우스를 올렸을 경우
-      await audioPlayer.play(DeviceFileSource('assets/mp3/버튼에올렸을때효과음.mp3'));
+      await audioPlayer.play(AssetSource('mp3/button_hover.mp3'));
     }
   }
 

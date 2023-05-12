@@ -267,25 +267,25 @@ class _ResultScreenState extends ConsumerState<ResultScreen>
       if (widget.selectNum == 1 || //3등
           widget.selectNum == 8 ||
           widget.selectNum == 14) {
-        await audioPlayer!.play(DeviceFileSource('assets/mp3/결과3등효과음.mp3'));
+        await audioPlayer!.play(AssetSource('mp3/result_three.mp3'));
       } else if (widget.selectNum == 2 || //1등
           widget.selectNum == 5 ||
           widget.selectNum == 13 ||
           widget.selectNum == 10) {
-        await audioPlayer!.play(DeviceFileSource('assets/mp3/결과1등효과음.mp3'));
+        await audioPlayer!.play(AssetSource('mp3/result_one.mp3'));
       } else {
         //2등
-        await audioPlayer!.play(DeviceFileSource('assets/mp3/결과2등효과음.mp3'));
+        await audioPlayer!.play(AssetSource('mp3/result_two.mp3'));
       }
     } else if (type == 'back') {
       //뒤로가기 버튼
-      await audiobackPlayer.play(DeviceFileSource('assets/mp3/다시보기버튼효과음.mp3'));
+      await audiobackPlayer.play(AssetSource('mp3/replay_button.mp3'));
     } else if (type == 'hover') {
       //버튼에올렸을때 효과음
-      await audioPlayer!.play(DeviceFileSource('assets/mp3/버튼에올렸을때효과음.mp3'));
+      await audioPlayer!.play(AssetSource('mp3/button_hover.mp3'));
     } else {
       //애니메이션 올라갈때 효과음
-      await audioPlayer!.play(DeviceFileSource('assets/mp3/애니메이션올라가는효과음.mp3'));
+      await audioPlayer!.play(AssetSource('mp3/animation.mp3'));
     }
   }
 
