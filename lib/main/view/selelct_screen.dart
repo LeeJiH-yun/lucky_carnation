@@ -37,8 +37,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
   Future<void> _init() async {
     audioPlayerback = AudioPlayer();
     await audioPlayerback!.setReleaseMode(ReleaseMode.loop);
-    await audioPlayerback!
-        .play(DeviceFileSource('assets/mp3/background_music.mp3'));
+    await audioPlayerback!.play(AssetSource('mp3/background_music.mp3'));
   }
 
   @override
@@ -181,7 +180,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
                                           // else if (selectNum == 1) { //선택 취소일 경우 이미 값이 들어있는데 선택한거니까
                                           //   selectNum = 0;
                                           // }
-                                          playSounds('press');
+                                          playSounds('num');
                                           selectColor =
                                               selectColor == Colors.pink
                                                   ? Color(0XFFFFC7D6)
@@ -214,7 +213,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
                                               (selectNum == 0 || selectNum != 2)
                                                   ? 2
                                                   : 0;
-                                          playSounds('press');
+                                          playSounds('num');
                                           selectColor =
                                               selectColor == Colors.pink
                                                   ? Color(0XFFFFC7D6)
@@ -247,7 +246,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
                                               (selectNum == 0 || selectNum != 3)
                                                   ? 3
                                                   : 0;
-                                          playSounds('press');
+                                          playSounds('num');
                                           selectColor =
                                               selectColor == Colors.pink
                                                   ? Color(0XFFFFC7D6)
@@ -280,7 +279,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
                                               (selectNum == 0 || selectNum != 4)
                                                   ? 4
                                                   : 0;
-                                          playSounds('press');
+                                          playSounds('num');
                                           selectColor =
                                               selectColor == Colors.pink
                                                   ? Color(0XFFFFC7D6)
@@ -313,7 +312,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
                                               (selectNum == 0 || selectNum != 5)
                                                   ? 5
                                                   : 0;
-                                          playSounds('press');
+                                          playSounds('num');
                                           selectColor =
                                               selectColor == Colors.pink
                                                   ? Color(0XFFFFC7D6)
@@ -355,7 +354,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
                                               (selectNum == 0 || selectNum != 6)
                                                   ? 6
                                                   : 0;
-                                          playSounds('press');
+                                          playSounds('num');
                                           selectColor =
                                               selectColor == Colors.pink
                                                   ? Color(0XFFFFC7D6)
@@ -388,7 +387,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
                                               (selectNum == 0 || selectNum != 7)
                                                   ? 7
                                                   : 0;
-                                          playSounds('press');
+                                          playSounds('num');
                                           selectColor =
                                               selectColor == Colors.pink
                                                   ? Color(0XFFFFC7D6)
@@ -421,7 +420,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
                                               (selectNum == 0 || selectNum != 8)
                                                   ? 8
                                                   : 0;
-                                          playSounds('press');
+                                          playSounds('num');
                                           selectColor =
                                               selectColor == Colors.pink
                                                   ? Color(0XFFFFC7D6)
@@ -454,7 +453,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
                                               (selectNum == 0 || selectNum != 9)
                                                   ? 9
                                                   : 0;
-                                          playSounds('press');
+                                          playSounds('num');
                                           selectColor =
                                               selectColor == Colors.pink
                                                   ? Color(0XFFFFC7D6)
@@ -487,7 +486,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
                                                   selectNum != 10)
                                               ? 10
                                               : 0;
-                                          playSounds('press');
+                                          playSounds('num');
                                           selectColor =
                                               selectColor == Colors.pink
                                                   ? Color(0XFFFFC7D6)
@@ -529,7 +528,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
                                                   selectNum != 11)
                                               ? 11
                                               : 0;
-                                          playSounds('press');
+                                          playSounds('num');
                                           selectColor =
                                               selectColor == Colors.pink
                                                   ? Color(0XFFFFC7D6)
@@ -562,7 +561,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
                                                   selectNum != 12)
                                               ? 12
                                               : 0;
-                                          playSounds('press');
+                                          playSounds('num');
                                           selectColor =
                                               selectColor == Colors.pink
                                                   ? Color(0XFFFFC7D6)
@@ -595,7 +594,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
                                                   selectNum != 13)
                                               ? 13
                                               : 0;
-                                          playSounds('press');
+                                          playSounds('num');
                                           selectColor =
                                               selectColor == Colors.pink
                                                   ? Color(0XFFFFC7D6)
@@ -628,7 +627,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
                                                   selectNum != 14)
                                               ? 14
                                               : 0;
-                                          playSounds('press');
+                                          playSounds('num');
                                           selectColor =
                                               selectColor == Colors.pink
                                                   ? Color(0XFFFFC7D6)
@@ -661,7 +660,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
                                                   selectNum != 15)
                                               ? 15
                                               : 0;
-                                          playSounds('press');
+                                          playSounds('num');
                                           selectColor =
                                               selectColor == Colors.pink
                                                   ? Color(0XFFFFC7D6)
@@ -696,7 +695,7 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
                                       onHover: (value) {
                                         playSounds('hover');
                                       },
-                                      onPressed: () async {
+                                      onPressed: () {
                                         playSounds('press');
                                         if (selectNum == 0) {
                                           ScaffoldMessenger.of(context)
@@ -831,9 +830,11 @@ class _SelectScreenState extends ConsumerState<SelectScreen> {
     AudioPlayer? audioPlayer = AudioPlayer();
 
     if (type == 'press') {
-      await audioPlayer.play(DeviceFileSource('assets/mp3/mouse_click.mp3'));
+      await audioPlayer.play(AssetSource('mp3/num_select_button.mp3'));
+    } else if (type == 'num') {
+      await audioPlayer.play(AssetSource('mp3/num_select_button.mp3'));
     } else {
-      await audioPlayer.play(DeviceFileSource('assets/mp3/버튼에올렸을때효과음.mp3'));
+      await audioPlayer.play(AssetSource('mp3/button_hover.mp3'));
     }
   }
 
