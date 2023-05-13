@@ -99,6 +99,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen>
                       ),
                       Text(
                         text.toString(),
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 30.0,
@@ -211,14 +212,14 @@ class _ResultScreenState extends ConsumerState<ResultScreen>
     if (widget.selectNum == 1 ||
         widget.selectNum == 8 ||
         widget.selectNum == 14) {
-      text = '3등입니당';
+      text = '3등 \n 사랑과 정성의 손길이 담긴 색종이 카네이션!';
     } else if (widget.selectNum == 2 ||
         widget.selectNum == 5 ||
         widget.selectNum == 13 ||
         widget.selectNum == 10) {
-      text = '1등입니당';
+      text = '1등 \n 꽃내음 가득한 생화 카네이션!';
     } else {
-      text = '2등입니당';
+      text = '2등 \n 생화를 닮은 카네이션 브로치!';
     }
   }
 
@@ -236,19 +237,10 @@ class _ResultScreenState extends ConsumerState<ResultScreen>
             : 2;
 
     return (ranking == 3)
-        ? Row(
-            children: [
-              Container(
-                width: 300,
-                height: 300,
-                child: Image.asset('assets/images/상품종이접기.png'),
-              ),
-              Container(
-                width: 300,
-                height: 300,
-                child: Image.asset('assets/images/상품성경책커버.png'),
-              ),
-            ],
+        ? Container(
+            width: 300,
+            height: 300,
+            child: Image.asset('assets/images/상품종이접기.png'),
           )
         : Container(
             width: 300,

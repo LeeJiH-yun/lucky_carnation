@@ -90,7 +90,7 @@ class _ExplanScreenState extends State<ExplanScreen> {
                   top: 200,
                   child: Container(
                     child: Text(
-                      '어버이주일을 맞이하여 \n 색다르게 준비해보았습니다.\n 행운의 카네이션은 누구에게로?',
+                      'TO. 사랑하는 우리가교회 가족 여러분 \n 과연 1등 카네이션은 몇 번에 숨어있을까요? \n 숫자를 선택해주세요!🤗',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 30.0,
